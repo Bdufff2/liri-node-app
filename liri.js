@@ -18,12 +18,15 @@ for (var i = 2; i < log.length; i++) {
 
 // If statements to define the actions for each different 'command'
 
-if (action === "my-tweets") {
+if (command === "my-tweets") {
     // show your last 20 tweets and when they were created
 }
-if (action === "spotify-this-song") {
+if (command === "spotify-this-song") {
     // show Artist(s), The song's name, A preview link of the song from Spotify, The album that the song is from
 }
-if (action === "movie-this") {
+if (command === "movie-this") {
     // show * Title of the movie. * Year the movie came out. * IMDB Rating of the movie. * Rotten Tomatoes Rating of the movie. * Country where the movie was produced.* Language of the movie. * Plot of the movie. * Actors in the movie.
+}
+if (command === "do-what-it-says") {
+    // show your last 20 tweets and when they were created
 }
