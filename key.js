@@ -8,3 +8,10 @@ var twitterKeys = {
 }
 
 module.exports = twitterKeys;
+
+exports.spotifyKeys = {
+    client_id: "78da9aea865e4e829d7bac70a39ab2cd",
+    client_secret: "b28eac5f77cb4e2aad335309b159e1bf"
+  }
+
+module.exports = spotifyKeys;
