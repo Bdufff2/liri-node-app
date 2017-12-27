@@ -59,8 +59,8 @@ if (command === "movie-this") {
     var movie = value;
     if (typeof movie !== "undefined") {
         movieThis(movie);
-    } else {
-        movieThis("Mr.Nobody");
+    } else if (movie === "") {
+        movie = "Mr.Nobody";
     }
 }
 
