@@ -1,9 +1,13 @@
-// twitter api call variables
+
 var key = require("./key.js");
+// request package call
 var request = require('request');
+// fs package call
 var fs = require('fs')
+// twitter api call variables
 var Twitter = require('twitter');
 var twitterNew = new Twitter(key.twitterKeys);
+// spotify api call variables
 var Spotify = require('spotify');
 var spotifyNew = new Spotify(key.spotifyKeys);
 
@@ -52,8 +56,14 @@ if (command === "spotify-this-song") {
 }
 if (command === "movie-this") {
     // show * Title of the movie. * Year the movie came out. * IMDB Rating of the movie. * Rotten Tomatoes Rating of the movie. * Country where the movie was produced.* Language of the movie. * Plot of the movie. * Actors in the movie.
-
+    var movie = value;
+    if (typeof movie !== "undefined") {
+        movieThis(movie);
+    } else {
+        movieThis("Mr.Nobody");
+    }
 }
+
 if (command === "do-what-it-says") {
     //  take the text inside of random.txt and then use it to call one of LIRI's commands??
 
@@ -96,3 +106,31 @@ function spotifyThis(song) {
         copyToTxt("Album: " + data.tracks.items[0].album.name);
     });
 }
+
+
+function movieThis(movie) {
+    var queryUrl = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
+    request(queryUrl, function (error, response, body) {
+      if (!error && response.statusCode === 200) {
+        console.log("=====");
+        console.log("");
+        console.log("");
+        console.log("");
+        console.log("Title of the movie: " + JSON.parse(body).Title);
+        console.log("Year the movie came out: " + JSON.parse(body).Year);
+        console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
+        console.log("Rotten Tomatoes Rating:" + JSON.parse(body).Ratings[1].Value);
+        console.log("Country where the movie was produced: " + JSON.parse(body).Country);
+        console.log("Language of the movie: " + JSON.parse(body).Language);
+        console.log("\nPlot of the movie: " + JSON.parse(body).Plot);
+        console.log("\nActors in the movie: " + JSON.parse(body).Actors);
+        console.log("");
+        console.log("");
+        console.log("");
+        console.log("=====");
+
+
+        copyToTxt(body);
+      }
+    });
+  }
